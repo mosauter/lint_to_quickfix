@@ -1,9 +1,9 @@
 local M = {}
 
----@param file_path string file to check
----@param mode LintToQfMode
 ---@param linter LintToQfLinter
-function M.lint_to_qf(file_path, mode, linter)
+---@param file_path? string file to check
+---@param mode? LintToQfMode
+function M.lint_to_qf(linter, file_path, mode)
     if mode == nil then
         mode = "r"
     end
