@@ -32,10 +32,8 @@ end
 ---@return LineEntry
 function M.line_to_entry(line, sep, has_col)
     local splits = vim.split(line, sep or "|")
-    print(line)
 
     if has_col == nil or has_col == true then
-        print("cols")
         return {
             filename = splits[1],
             lnum = splits[2],
