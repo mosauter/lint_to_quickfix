@@ -23,7 +23,7 @@ function M.lint_to_qf(linter, file_path, mode)
         print("This can take a while...")
     end
 
-    local entries, got_results =
+    local entries =
         require("lint_to_quickfix.lint." .. linter).lint(use_file_path)
 
     local relative_file_name = vim.fn.expand("%:t")
@@ -31,7 +31,7 @@ function M.lint_to_qf(linter, file_path, mode)
     local qf_argument = { title = qf_title, items = entries }
     vim.fn.setqflist({}, mode, qf_argument)
 
-    if got_results then
+    if #entries ~= 0 then
         vim.cmd(":copen")
         if mode == "r" then
             vim.cmd(":cfirst")
