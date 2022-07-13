@@ -1,8 +1,8 @@
 local M = {}
 
 ---@param file_path string file to check
----@param mode Mode
----@param linter Linter
+---@param mode LintToQfMode
+---@param linter LintToQfLinter
 function M.lint_to_qf(file_path, mode, linter)
     if mode == nil then
         mode = "r"
