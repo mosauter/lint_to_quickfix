@@ -1,9 +1,10 @@
 local M = {}
 
 ---@param linter LintToQfLinter
+---@param file_types string[]
 ---@param file_path? string file to check
 ---@param mode? LintToQfMode
-function M.lint_to_qf(linter, file_path, mode)
+function M.lint_to_qf(linter, file_types, file_path, mode)
     if mode == nil then
         mode = "r"
     end
@@ -14,8 +15,15 @@ function M.lint_to_qf(linter, file_path, mode)
         use_file_path = vim.api.nvim_buf_get_name(buffer)
 
         local buffer_filetype = vim.api.nvim_buf_get_option(buffer, "filetype")
-        if buffer_filetype ~= "python" then
-            print("This function can only work with python-files!")
+        if not vim.tbl_contains(file_types, buffer_filetype) then
+            print(
+                "Linter '"
+                    .. linter
+                    .. "' can only work with filetypes: "
+                    .. vim.inspect(file_types)
+                    .. " Not with: "
+                    .. buffer_filetype
+            )
             return
         end
     else
