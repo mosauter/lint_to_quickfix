@@ -1,6 +1,7 @@
 ---@alias LintToQfLinter
 ---| 'pylint' # lint with pylint
----| 'mypy' # lint with pylint
+---| 'mypy' # lint with mypy
+---| 'shellcheck' # lint with shellcheck
 
 ---@alias LintToQfMode
 ---| 'a' # found items are added to qflist
@@ -23,4 +24,5 @@ end
 return {
     pylint = curry("pylint", { "python" }),
     mypy = curry("mypy", { "python" }),
+    shellcheck = curry("shellcheck", { "sh", "zsh", "bash" }),
 }
