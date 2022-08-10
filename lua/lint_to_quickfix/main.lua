@@ -34,6 +34,7 @@ function M.lint_to_qf(linter, file_types, file_path, mode)
     local entries =
         require("lint_to_quickfix.lint." .. linter).lint(use_file_path)
 
+    ---@diagnostic disable-next-line: missing-parameter
     local relative_file_name = vim.fn.expand("%:t")
     local qf_title = string.format("%s: %s", linter, relative_file_name)
     local qf_argument = { title = qf_title, items = entries }
