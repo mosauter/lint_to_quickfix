@@ -6,10 +6,10 @@ local M = {}
 ---@field col string
 ---@field text string
 
----@param tbl string[]
----@param idx number
----@param sep string
----@return string
+---@param tbl string[] an array of strings
+---@param idx number index from which to combine all to the end
+---@param sep? string to add between each string from {tbl}
+---@return string the string from `idx`
 local function concatenate(tbl, idx, sep)
     local result = nil
 
@@ -18,7 +18,7 @@ local function concatenate(tbl, idx, sep)
             if result == nil then
                 result = value
             else
-                result = result .. sep .. value
+                result = result .. (sep or "") .. value
             end
         end
     end
