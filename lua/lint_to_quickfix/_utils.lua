@@ -26,10 +26,10 @@ local function concatenate(tbl, idx, sep)
     return result
 end
 
----@param line string
----@param sep? string
----@param has_col? boolean
----@return LineEntry
+---@param line string the line you want to change
+---@param sep? string separator between the elements, defaults to '|'
+---@param has_col? boolean if the [3] element after splitting is a column or not, defaults to 'true'
+---@return LineEntry the resulting `LineEntry` to give over to the qf list
 function M.line_to_entry(line, sep, has_col)
     local splits = vim.split(line, sep or "|")
 
@@ -49,8 +49,8 @@ function M.line_to_entry(line, sep, has_col)
     }
 end
 
----@param program string
----@return boolean
+---@param program string can be either a path or a binary on the $PATH
+---@return boolean 'true' if the {program} exists _and_ is executable, otherwise 'false'
 function M.is_executable(program)
     if vim.fn.executable(program) == 0 then
         print("'" .. program .. "' is not on $PATH, aborting...")
