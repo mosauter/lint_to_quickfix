@@ -27,7 +27,7 @@ function M.lint_to_qf(linter, file_path, mode)
         require("lint_to_quickfix.lint." .. linter).lint(use_file_path)
 
     local relative_file_name = vim.fn.expand("%:t")
-    local qf_title = string.format("pylint: %s", relative_file_name)
+    local qf_title = string.format("%s: %s", linter, relative_file_name)
     local qf_argument = { title = qf_title, items = entries }
     vim.fn.setqflist({}, mode, qf_argument)
 
